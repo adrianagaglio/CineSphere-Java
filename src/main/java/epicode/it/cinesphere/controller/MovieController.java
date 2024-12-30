@@ -26,12 +26,8 @@ public class MovieController {
     }
 
     @PostMapping
-    public String addMovie(@RequestBody AddMovieRequest movie) {
-        Movie m = movieService.newMovie(movie);
-        if (m!=null)
-            return "Movie added successfully";
-        else
-            return "Error while adding movie";
+    public Movie addMovie(@RequestBody AddMovieRequest movie) throws Exception {
+        return movieService.newMovie(movie);
     }
 
     @PutMapping("/{id}")

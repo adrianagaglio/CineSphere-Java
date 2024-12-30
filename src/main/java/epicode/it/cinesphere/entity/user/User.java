@@ -30,5 +30,4 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Movie> favMovies = new ArrayList<>();
 
-
 }

@@ -1,8 +1,10 @@
 package epicode.it.cinesphere.entity.movie;
 
+import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.actor.GetActorRequest;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,5 +21,5 @@ public class AddMovieRequest {
 
     private List<String> genres;
 
-    private List<String> actors;
+    private List<GetActorRequest> actors = new ArrayList<>();
 }

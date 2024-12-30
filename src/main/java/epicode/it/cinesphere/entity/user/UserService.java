@@ -1,6 +1,7 @@
 package epicode.it.cinesphere.entity.user;
 
 import epicode.it.cinesphere.entity.movie.Movie;
+import epicode.it.cinesphere.entity.movie.MovieRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepo userRepo;
+    private final MovieRepo movieRepo;
     private final PasswordEncoder passwordEncoder;
 
     public User save(User user) {
@@ -39,7 +41,7 @@ public class UserService {
     }
 
     public String delete(User user) {
-        if(findUserById(user.getId()) == null)
+        if (findUserById(user.getId()) == null)
             throw new IllegalArgumentException("User not found");
         userRepo.delete(user);
         return "User deleted successfully";
@@ -86,16 +88,26 @@ public class UserService {
     }
 
     public IGetUserResponse update(User request) {
-        if(request.getFirstName() != null) request.setFirstName(request.getFirstName());
-        if(request.getLastName() != null) request.setLastName(request.getLastName());
-        if(request.getUsername() != null) request.setUsername(request.getUsername());
-        if(request.getEmail() != null) request.setEmail(request.getEmail());
-        if(request.getPassword() != null) request.setPassword(passwordEncoder.encode(request.getPassword()));
-        if(request.getFavMovies() != null) request.setFavMovies(request.getFavMovies());
+        if (request.getFirstName() != null) request.setFirstName(request.getFirstName());
+        if (request.getLastName() != null) request.setLastName(request.getLastName());
+        if (request.getUsername() != null) request.setUsername(request.getUsername());
+        if (request.getEmail() != null) request.setEmail(request.getEmail());
+        if (request.getPassword() != null) request.setPassword(passwordEncoder.encode(request.getPassword()));
+        if (request.getFavMovies() != null) request.setFavMovies(request.getFavMovies());
 
         userRepo.save(request);
 
         return userRepo.findByIdGetUserResponse(request.getId());
+    }
+
+    public User addFav(Long id, Movie movie) throws Exception {
+        User u = findById(id);
+        if (u == null) throw new Exception("User not found");
+        Movie m = movieRepo.findById(movie.getId()).orElse(null);
+        if (m == null) throw new Exception("Movie not found");
+        if (u.getFavMovies().contains(m)) throw new Exception("Movie already added");
+        u.getFavMovies().add(m);
+        return userRepo.save(u);
     }
 
 }

@@ -5,6 +5,7 @@ import epicode.it.cinesphere.entity.actor.ActorRepo;
 import epicode.it.cinesphere.entity.actor.GetActorRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 public class MovieService {
     private final MovieRepo movieRepo;
     private final ActorRepo actorRepo;
+    private final Logger logger;
 
     public Movie save(Movie movie) {
         return movieRepo.save(movie);
@@ -30,6 +32,7 @@ public class MovieService {
     public List<Movie> findAll() {
         return movieRepo.findAll();
     }
+
 
     public int count() {
         return (int) movieRepo.count();
@@ -52,8 +55,10 @@ public class MovieService {
     }
 
     @Transactional
-    public Movie newMovie(AddMovieRequest request) {
+    public Movie newMovie(AddMovieRequest request) throws Exception {
         Movie newMovie = new Movie();
+        Movie foundMovie = findByTitle(request.getTitle());
+        if (foundMovie != null) throw new Exception("Movie already exists");
         newMovie.setTitle(request.getTitle());
         newMovie.setDescription(request.getDescription());
         newMovie.setYear(request.getYear());
@@ -65,7 +70,7 @@ public class MovieService {
             newMovie.getGenres().addAll(request.getGenres());
         if (request.getActors() != null && request.getActors().size() > 0) {
             for (int i = 0; i < request.getActors().size(); i++) {
-                GetActorRequest a = new GetActorRequest((request.getActors().get(i)));
+                GetActorRequest a = request.getActors().get(i);
                 Actor managedActor = actorRepo.findFirstByNameAndSurname(a.getName(), a.getSurname());
                 newMovie.getActors().add(managedActor);
                 managedActor.getMovies().add(newMovie);
