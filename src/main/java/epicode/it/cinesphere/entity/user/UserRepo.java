@@ -1,0 +1,30 @@
+package epicode.it.cinesphere.entity.user;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface UserRepo extends JpaRepository<User, Long> {
+
+    public User findFirstByUsernameIgnoreCase(String username);
+
+    public User findFirstByEmailIgnoreCase(String email);
+
+    @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:emailOrUsername) OR LOWER(u.username) = LOWER(:emailOrUsername)")
+    public User findFirstByEmailOrUsername(@Param("emailOrUsername") String emailOrUsername);
+
+    @Query("SELECT u FROM User u WHERE LOWER(u.firstName) = LOWER(:firstName) AND LOWER(u.lastName) = LOWER(:lastName)")
+    public List<User> findAllByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
+
+    public Boolean existsByUsername(String username);
+
+    public Boolean existsByEmail(String email);
+
+    public List<IGetUserResponse> findGetUsersResponseBy();
+
+    @Query("SELECT u FROM User u WHERE u.id = :id")
+    public IGetUserResponse findByIdGetUserResponse(@Param("id") Long id);
+
+}
