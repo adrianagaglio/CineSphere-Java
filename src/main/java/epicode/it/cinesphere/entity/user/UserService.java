@@ -114,4 +114,8 @@ public class UserService {
         return userRepo.findByIdGetUserResponse(u.getId());
     }
 
+    public List<Movie> findFavMoviesByUserId(Long id) {
+        return userRepo.findFavMoviesByUserId(id);
+    }
+
 }

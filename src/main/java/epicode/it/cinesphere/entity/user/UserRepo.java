@@ -1,5 +1,6 @@
 package epicode.it.cinesphere.entity.user;
 
+import epicode.it.cinesphere.entity.movie.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,5 +27,8 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.id = :id")
     public IGetUserResponse findByIdGetUserResponse(@Param("id") Long id);
+
+    @Query("SELECT m FROM User u JOIN u.favMovies m WHERE u.id = :id")
+    public List<Movie> findFavMoviesByUserId(@Param("id") Long id);
 
 }

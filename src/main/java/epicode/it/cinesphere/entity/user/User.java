@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -27,7 +27,8 @@ public class User {
 
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private List<Movie> favMovies = new ArrayList<>();
 
 }
