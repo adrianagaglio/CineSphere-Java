@@ -1,6 +1,7 @@
 package epicode.it.cinesphere.entity.user;
 
 import epicode.it.cinesphere.entity.movie.Movie;
+import epicode.it.cinesphere.entity.rate.Rate;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -30,5 +31,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<Movie> favMovies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Rate> rates = new ArrayList<>();
 
 }

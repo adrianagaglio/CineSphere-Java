@@ -3,6 +3,7 @@ package epicode.it.cinesphere.entity.movie;
 import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.actor.ActorRepo;
 import epicode.it.cinesphere.entity.actor.GetActorRequest;
+import epicode.it.cinesphere.entity.rate.Rate;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -100,4 +101,6 @@ public class MovieService {
         }
         return movieRepo.save(m);
     }
+
+
 }

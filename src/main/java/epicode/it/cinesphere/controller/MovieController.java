@@ -22,7 +22,7 @@ public class MovieController {
 
     @GetMapping("/{id}")
     public Movie getMovie(@PathVariable Long id) {
-        return movieService.findById(1L);
+        return movieService.findById(id);
     }
 
     @PostMapping

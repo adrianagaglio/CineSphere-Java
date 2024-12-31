@@ -2,6 +2,7 @@ package epicode.it.cinesphere.entity.user;
 
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieRepo;
+import epicode.it.cinesphere.entity.rate.Rate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -117,5 +118,7 @@ public class UserService {
     public List<Movie> findFavMoviesByUserId(Long id) {
         return userRepo.findFavMoviesByUserId(id);
     }
+
+
 
 }

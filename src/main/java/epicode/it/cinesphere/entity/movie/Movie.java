@@ -1,5 +1,6 @@
 package epicode.it.cinesphere.entity.movie;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.rate.Rate;
@@ -39,7 +40,8 @@ public class Movie {
     )
     private List<Actor> actors = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Rate> rates = new ArrayList<>();
 
 }
