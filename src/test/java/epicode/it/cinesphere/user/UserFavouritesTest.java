@@ -43,7 +43,7 @@ public class UserFavouritesTest {
         m.setYear(2023);
         m=movieService.save(m);
 
-        userService.addFav(u,m);
+        userService.updateFav(u,m);
 
         User updatedUser = userService.findById(u.getId());
 
@@ -54,7 +54,7 @@ public class UserFavouritesTest {
         m2.setYear(1995);
         m2=movieService.save(m2);
 
-        userService.addFav(u,m2);
+        userService.updateFav(u,m2);
 
         userService.deleteFav(u,m);
 

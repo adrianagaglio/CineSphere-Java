@@ -63,7 +63,7 @@ public class UserService {
         return (int) userRepo.count();
     }
 
-    public void addFav(User user, Movie movie) {
+    public void updateFav(User user, Movie movie) {
         User managedUser = findById(user.getId());
         if (managedUser != null) {
             managedUser.getFavMovies().add(movie);
@@ -100,14 +100,18 @@ public class UserService {
         return userRepo.findByIdGetUserResponse(request.getId());
     }
 
-    public User addFav(Long id, Movie movie) throws Exception {
-        User u = findById(id);
+    public IGetUserResponse updateFav(UpdateFavRequest request) throws Exception {
+        User u = findById(request.getUserId());
         if (u == null) throw new Exception("User not found");
-        Movie m = movieRepo.findById(movie.getId()).orElse(null);
+        Movie m = movieRepo.findById(request.getMovieId()).orElse(null);
         if (m == null) throw new Exception("Movie not found");
-        if (u.getFavMovies().contains(m)) throw new Exception("Movie already added");
-        u.getFavMovies().add(m);
-        return userRepo.save(u);
+        if (!u.getFavMovies().contains(m)) {
+            u.getFavMovies().add(m);
+        } else {
+            u.getFavMovies().remove(m);
+        }
+        u=userRepo.save(u);
+        return userRepo.findByIdGetUserResponse(u.getId());
     }
 
 }
