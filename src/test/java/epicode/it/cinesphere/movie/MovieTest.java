@@ -94,7 +94,6 @@ public class MovieTest {
 
         movies=movieService.save(movies);
 
-
         assertEquals(actualCount + 4, movieService.count());
 
         List<Movie> byYear = movieService.findByYear(1989);

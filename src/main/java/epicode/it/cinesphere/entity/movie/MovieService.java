@@ -2,6 +2,7 @@ package epicode.it.cinesphere.entity.movie;
 
 import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.actor.ActorRepo;
+import epicode.it.cinesphere.entity.actor.ActorService;
 import epicode.it.cinesphere.entity.actor.GetActorRequest;
 import epicode.it.cinesphere.entity.rate.Rate;
 import jakarta.transaction.Transactional;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MovieService {
     private final MovieRepo movieRepo;
-    private final ActorRepo actorRepo;
+    private final ActorService actorService;
     private final Logger logger;
 
     public Movie save(Movie movie) {
@@ -60,6 +61,7 @@ public class MovieService {
         Movie newMovie = new Movie();
         Movie foundMovie = findByTitle(request.getTitle());
         if (foundMovie != null) throw new Exception("Movie already exists");
+        save(newMovie);
         newMovie.setTitle(request.getTitle());
         newMovie.setDescription(request.getDescription());
         newMovie.setYear(request.getYear());
@@ -72,7 +74,7 @@ public class MovieService {
         if (request.getActors() != null && request.getActors().size() > 0) {
             for (int i = 0; i < request.getActors().size(); i++) {
                 GetActorRequest a = request.getActors().get(i);
-                Actor managedActor = actorRepo.findFirstByNameAndSurname(a.getName(), a.getSurname());
+                Actor managedActor = actorService.findActorByNameAndSurname(a.getName(), a.getSurname());
                 newMovie.getActors().add(managedActor);
                 managedActor.getMovies().add(newMovie);
             }

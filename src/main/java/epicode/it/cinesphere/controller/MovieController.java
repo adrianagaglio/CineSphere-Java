@@ -1,8 +1,10 @@
 package epicode.it.cinesphere.controller;
 
+import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.movie.AddMovieRequest;
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
