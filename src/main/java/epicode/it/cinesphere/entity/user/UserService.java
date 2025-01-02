@@ -88,16 +88,16 @@ public class UserService {
         return userRepo.findByIdGetUserResponse(id);
     }
 
-    public IGetUserResponse update(User request) {
-        if (request.getFirstName() != null) request.setFirstName(request.getFirstName());
-        if (request.getLastName() != null) request.setLastName(request.getLastName());
-        if (request.getUsername() != null) request.setUsername(request.getUsername());
-        if (request.getEmail() != null) request.setEmail(request.getEmail());
-        if (request.getPassword() != null) request.setPassword(passwordEncoder.encode(request.getPassword()));
-        if (request.getFavMovies() != null) request.setFavMovies(request.getFavMovies());
-
-        userRepo.save(request);
-
+    public IGetUserResponse update(UpdateUserRequest request) throws Exception {
+        User u = findById(request.getId());
+        if(u==null) throw new Exception("User not found");
+        if (request.getFirstName() != null) u.setFirstName(request.getFirstName());
+        if (request.getLastName() != null) u.setLastName(request.getLastName());
+        if (request.getUsername() != null) u.setUsername(request.getUsername());
+        if (request.getEmail() != null) u.setEmail(request.getEmail());
+        if(request.getActualPassword() != null && request.getNewPassword() != null)
+            if(passwordEncoder.matches(request.getActualPassword(), u.getPassword())) u.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        save(u);
         return userRepo.findByIdGetUserResponse(request.getId());
     }
 
@@ -118,7 +118,5 @@ public class UserService {
     public List<Movie> findFavMoviesByUserId(Long id) {
         return userRepo.findFavMoviesByUserId(id);
     }
-
-
 
 }
