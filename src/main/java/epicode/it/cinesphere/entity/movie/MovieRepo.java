@@ -14,5 +14,7 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
 
     public List<Movie> findByYearOrderByTitleAsc(int year);
 
+    public List<Movie> findByTitleContainsIgnoreCase(String title);
 
+    
 }

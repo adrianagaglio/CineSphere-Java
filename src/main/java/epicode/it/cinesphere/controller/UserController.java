@@ -38,11 +38,8 @@ public class UserController {
 
     // DELETE prodotto
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id) {
-        try {
+    public String deleteUser(@PathVariable Long id) throws IllegalAccessException {
             return userService.delete(id);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 }

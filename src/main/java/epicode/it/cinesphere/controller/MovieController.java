@@ -42,5 +42,4 @@ public class MovieController {
         movieService.delete(id);
         return "Movie deleted successfully";
     }
-
 }

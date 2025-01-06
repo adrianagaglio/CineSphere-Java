@@ -6,4 +6,5 @@ public interface IGetUserResponse {
     String getLastName();
     String getUsername();
     String getEmail();
+    String getRole();
 }
