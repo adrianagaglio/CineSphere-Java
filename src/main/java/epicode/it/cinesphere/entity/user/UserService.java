@@ -47,11 +47,11 @@ public class UserService {
         return "User deleted successfully";
     }
 
-    public User findByUsername(String username) {
+    public IGetUserResponse findByUsername(String username) {
         return userRepo.findFirstByUsernameIgnoreCase(username);
     }
 
-    public User findByEmail(String email) {
+    public IGetUserResponse findByEmail(String email) {
         return userRepo.findFirstByEmailIgnoreCase(email);
     }
 

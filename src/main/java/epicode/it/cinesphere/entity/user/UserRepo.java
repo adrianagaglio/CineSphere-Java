@@ -10,11 +10,11 @@ import java.util.List;
 
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    @Query("SELECT u FROM User u JOIN AppUser au ON au.id = u.appUser.id WHERE au.username = :username")
-    public User findFirstByUsernameIgnoreCase(String username);
+    @Query("SELECT u.firstName, u.lastName, au.email, au.username FROM User u JOIN AppUser au ON au.id = u.appUser.id WHERE au.username = :username")
+    public IGetUserResponse findFirstByUsernameIgnoreCase(String username);
 
-    @Query("SELECT u FROM User u JOIN AppUser au ON au.id = u.appUser.id WHERE au.email = :email")
-    public User findFirstByEmailIgnoreCase(String email);
+    @Query("SELECT  u.firstName, u.lastName, au.email, au.username  FROM User u JOIN AppUser au ON au.id = u.appUser.id WHERE au.email = :email")
+    public IGetUserResponse findFirstByEmailIgnoreCase(String email);
 
     @Query("SELECT u FROM User u Join AppUser au ON au.id = u.appUser.id WHERE LOWER(au.email) = LOWER(:emailOrUsername) OR LOWER(au.username) = LOWER(:emailOrUsername)")
     public User findFirstByEmailOrUsername(@Param("emailOrUsername") String emailOrUsername);

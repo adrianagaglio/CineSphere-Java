@@ -3,8 +3,11 @@ package epicode.it.cinesphere.entity.user;
 import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
 import epicode.it.cinesphere.entity.user.dto.UpdateUserRequest;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,6 +24,13 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<IGetUserResponse>> getUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<IGetUserResponse> getUser(@AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println(userDetails.getUsername());
+        return ResponseEntity.ok(userService.findByUsername(userDetails.getUsername()));
+
     }
 
     // GET user by id

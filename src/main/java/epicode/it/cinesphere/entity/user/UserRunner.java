@@ -41,12 +41,12 @@ public class UserRunner implements ApplicationRunner {
                 RegisterRequest register = new RegisterRequest();
                 register.setEmail(request.getFirstName().toLowerCase() + "." + lastname.toLowerCase() + "@mail.com");
                 register.setUsername(request.getFirstName().toLowerCase() + lastname.toLowerCase());
-                register.setPassword(pwdEncoder.encode("password"));
+                register.setPassword("password");
 
                 register.setUser(request);
 
                 try {
-                appUserSvc.registerUser(register, Set.of(Role.ROLE_USER));
+                appUserSvc.registerUser(register);
 
                 } catch (EntityExistsException e) {
                     logger.info(register.toString());
