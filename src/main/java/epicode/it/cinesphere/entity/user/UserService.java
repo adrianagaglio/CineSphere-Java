@@ -3,6 +3,7 @@ package epicode.it.cinesphere.entity.user;
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieRepo;
 import epicode.it.cinesphere.entity.rate.Rate;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,25 +26,21 @@ public class UserService {
     }
 
     public User findById(Long id) {
-        return userRepo.findById(id).orElse(null);
+        return userRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
     public List<User> findAll() {
         return userRepo.findAll();
     }
 
-    public String delete(Long id) throws IllegalAccessException {
-        if (findUserById(id) == null)
-            throw new IllegalAccessException("User not found");
-
+    public String delete(Long id)  {
         userRepo.deleteById(id);
         return "User deleted successfully";
 
     }
 
     public String delete(User user) {
-        if (findUserById(user.getId()) == null)
-            throw new IllegalArgumentException("User not found");
+
         userRepo.delete(user);
         return "User deleted successfully";
     }
@@ -88,30 +85,30 @@ public class UserService {
         return userRepo.findByIdGetUserResponse(id);
     }
 
-    public IGetUserResponse update(UpdateUserRequest request) throws Exception {
+    public IGetUserResponse update(UpdateUserRequest request)  {
         User u = findById(request.getId());
-        if(u==null) throw new Exception("User not found");
         if (request.getFirstName() != null) u.setFirstName(request.getFirstName());
         if (request.getLastName() != null) u.setLastName(request.getLastName());
         if (request.getUsername() != null) u.setUsername(request.getUsername());
         if (request.getEmail() != null) u.setEmail(request.getEmail());
-        if(request.getActualPassword() != null && request.getNewPassword() != null)
-            if(passwordEncoder.matches(request.getActualPassword(), u.getPassword())) u.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        if (request.getActualPassword() != null && request.getNewPassword() != null)
+            if (passwordEncoder.matches(request.getActualPassword(), u.getPassword()))
+                u.setPassword(passwordEncoder.encode(request.getNewPassword()));
         save(u);
         return userRepo.findByIdGetUserResponse(request.getId());
     }
 
-    public IGetUserResponse updateFav(UpdateFavRequest request) throws Exception {
+    public IGetUserResponse updateFav(UpdateFavRequest request) {
         User u = findById(request.getUserId());
-        if (u == null) throw new Exception("User not found");
+        if (u == null) throw new EntityNotFoundException("User not found");
         Movie m = movieRepo.findById(request.getMovieId()).orElse(null);
-        if (m == null) throw new Exception("Movie not found");
+        if (m == null) throw new EntityNotFoundException("Movie not found");
         if (!u.getFavMovies().contains(m)) {
             u.getFavMovies().add(m);
         } else {
             u.getFavMovies().remove(m);
         }
-        u=userRepo.save(u);
+        u = userRepo.save(u);
         return userRepo.findByIdGetUserResponse(u.getId());
     }
 

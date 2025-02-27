@@ -4,6 +4,7 @@ import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieService;
 import epicode.it.cinesphere.entity.user.User;
 import epicode.it.cinesphere.entity.user.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +17,16 @@ public class RateService {
     private final MovieService movieService;
     private final UserService userService;
 
-    public IRateResponse createRate(AddRateRequest request) throws Exception {
+    public IRateResponse createRate(AddRateRequest request)  {
         User u = userService.findById(request.getUserId());
-        if(u==null) throw new Exception("User not found");
         Movie m = movieService.findById(request.getMovieId());
-        if(m==null) throw new Exception("Movie not found");
         Rate r = new Rate();
         r.setUser(u);
         u.getRates().add(r);
         r.setMovie(m);
         m.getRates().add(r);
         r.setVote(request.getVote());
-        r=save(r);
+        r = save(r);
         return findIRateResponseBy(r.getId());
     }
 
@@ -40,7 +39,7 @@ public class RateService {
     }
 
     public Rate findById(Long id) {
-        return rateRepo.findById(id).orElse(null);
+        return rateRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Rate not found"));
     }
 
     public Rate save(Rate rate) {
@@ -65,7 +64,6 @@ public class RateService {
 
     public void delete(Long id) throws Exception {
         Rate r = findById(id);
-        if(r == null) throw new Exception("Rate not found");
         rateRepo.deleteById(id);
     }
 

@@ -5,23 +5,27 @@ import epicode.it.cinesphere.entity.auth.LoginResponse;
 import epicode.it.cinesphere.entity.auth.RegisterRequest;
 import epicode.it.cinesphere.entity.user.IGetUserResponse;
 import epicode.it.cinesphere.entity.auth.LoginRequest;
+import lombok.RequiredArgsConstructor;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
-
-    @Autowired
-    private AuthService authService;
+    private final AuthService authSvc;
 
     @PostMapping("/register")
-    public IGetUserResponse createUser(@RequestBody RegisterRequest request) {
-        return authService.register(request);
+    public ResponseEntity<IGetUserResponse> createUser(@RequestBody RegisterRequest request) {
+
+        return new ResponseEntity<>(authSvc.register(request), HttpStatus.OK) ;
     }
 
     @PutMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest request) throws IllegalAccessException {
-        return authService.login(request);
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+        return new ResponseEntity<>(authSvc.login(request), HttpStatus.OK);
     }
 }

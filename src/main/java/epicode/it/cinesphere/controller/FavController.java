@@ -6,27 +6,30 @@ import epicode.it.cinesphere.entity.user.UpdateFavRequest;
 import epicode.it.cinesphere.entity.user.User;
 import epicode.it.cinesphere.entity.user.UserService;
 import jakarta.websocket.server.PathParam;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/favourites")
+@RequiredArgsConstructor
 public class FavController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userSvc;
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public IGetUserResponse updateFavourite(@RequestBody UpdateFavRequest request) throws Exception {
-      return userService.updateFav(request);
+    public ResponseEntity<IGetUserResponse> updateFavourite(@RequestBody UpdateFavRequest request) throws Exception {
+        return new ResponseEntity<>(userSvc.updateFav(request), HttpStatus.OK);
     }
 
     @GetMapping
-    public List<Movie> getFavMovies(@RequestParam Long id) throws Exception {
-        return userService.findFavMoviesByUserId(id);
+    public ResponseEntity<List<Movie>> getFavMovies(@RequestParam Long id) {
+        return new ResponseEntity<>(userSvc.findFavMoviesByUserId(id), HttpStatus.OK);
     }
 
 

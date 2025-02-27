@@ -1,5 +1,7 @@
 package epicode.it.cinesphere.entity.actor;
 
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +21,20 @@ public class ActorService {
     }
 
     public Actor findById(Long id) {
-        return actorRepo.findById(id).orElse(null);
+        return actorRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Actor not found"));
     }
 
-    public void delete(Actor actor) {
+    public String delete(Actor actor) {
         actorRepo.delete(actor);
+        return "Actor deleted successfully";
     }
 
-    public void delete(Long id) throws Exception {
+    public String delete(Long id) {
         Actor a = findById(id);
-        if (a != null) {
-            delete(a);
-        } else {
-            throw new Exception("Actor not found");
-        }
+
+        delete(a);
+
+        return "Actor deleted successfully";
     }
 
     public List<Actor> findAll() {
@@ -44,14 +46,13 @@ public class ActorService {
     }
 
 
-
     public Actor findActorByNameAndSurname(String name, String surname) {
         return actorRepo.findFirstByNameAndSurname(name, surname);
     }
 
-    public Actor saveActor(AddActorRequest request) throws Exception {
-        if(findActorByNameAndSurname(request.getName(), request.getSurname()) != null)
-            throw new Exception("Actor already exists");
+    public Actor saveActor(AddActorRequest request) {
+        if (findActorByNameAndSurname(request.getName(), request.getSurname()) != null)
+            throw new EntityExistsException("Actor already exists");
 
         Actor a = new Actor();
         a.setName(request.getName());

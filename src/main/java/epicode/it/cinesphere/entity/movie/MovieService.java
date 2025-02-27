@@ -5,6 +5,8 @@ import epicode.it.cinesphere.entity.actor.ActorRepo;
 import epicode.it.cinesphere.entity.actor.ActorService;
 import epicode.it.cinesphere.entity.actor.GetActorRequest;
 import epicode.it.cinesphere.entity.rate.Rate;
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -28,7 +30,7 @@ public class MovieService {
     }
 
     public Movie findById(Long id) {
-        return movieRepo.findById(id).orElse(null);
+        return movieRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Movie not found"));
     }
 
     public List<Movie> findAll() {
@@ -40,12 +42,14 @@ public class MovieService {
         return (int) movieRepo.count();
     }
 
-    public void delete(Movie movie) {
+    public String delete(Movie movie) {
         movieRepo.delete(movie);
+        return "Movie deleted successfully";
     }
 
-    public void delete(Long id) {
+    public String delete(Long id) {
         movieRepo.deleteById(id);
+        return "Movie deleted successfully";
     }
 
     public Movie findByTitle(String title) {
@@ -57,10 +61,10 @@ public class MovieService {
     }
 
     @Transactional
-    public Movie newMovie(AddMovieRequest request) throws Exception {
+    public Movie newMovie(AddMovieRequest request) {
         Movie newMovie = new Movie();
         Movie foundMovie = findByTitle(request.getTitle());
-        if (foundMovie != null) throw new Exception("Movie already exists");
+        if (foundMovie != null) throw new EntityExistsException("Movie already exists");
         save(newMovie);
         newMovie.setTitle(request.getTitle());
         newMovie.setDescription(request.getDescription());
@@ -82,9 +86,8 @@ public class MovieService {
         return movieRepo.save(newMovie);
     }
 
-    public Movie update(Movie request) throws Exception {
+    public Movie update(Movie request) {
         Movie m = findById(request.getId());
-        if (m == null) throw new Exception("Movie not found");
         if (request.getTitle() != null) m.setTitle(request.getTitle());
         if (request.getDescription() != null) m.setDescription(request.getDescription());
         if (request.getYear() == 0) m.setYear(request.getYear());

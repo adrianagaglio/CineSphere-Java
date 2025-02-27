@@ -5,41 +5,46 @@ import epicode.it.cinesphere.entity.movie.AddMovieRequest;
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieService;
 import jakarta.websocket.server.PathParam;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/movies")
+@RequiredArgsConstructor
 public class MovieController {
-
-    @Autowired
-    private MovieService movieService;
+    private final MovieService movieService;
 
     @GetMapping
-    public List<Movie> getMovies() {
-        return movieService.findAll();
+    public ResponseEntity<List<Movie>> getMovies() {
+        return new ResponseEntity<>(movieService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Movie getMovie(@PathVariable Long id) {
-        return movieService.findById(id);
+    public ResponseEntity<Movie> getMovie(@PathVariable Long id) {
+        return new ResponseEntity<>(movieService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public Movie addMovie(@RequestBody AddMovieRequest movie) throws Exception {
-        return movieService.newMovie(movie);
+    public ResponseEntity<Movie> addMovie(@RequestBody AddMovieRequest movie) {
+        return new ResponseEntity<>(movieService.newMovie(movie), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public Movie updateMovie(@PathVariable Long id, @RequestBody Movie request) throws Exception {
-        return movieService.update(request);
+    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody Movie request) {
+        return new ResponseEntity<>(movieService.update(request), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteMovie(@PathVariable Long id) {
-        movieService.delete(id);
-        return "Movie deleted successfully";
+    public ResponseEntity<Map<String, String>> deleteMovie(@PathVariable Long id) {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", movieService.delete(id));
+        return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
     }
 }

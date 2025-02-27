@@ -3,7 +3,9 @@ package epicode.it.cinesphere.entity.auth;
 import epicode.it.cinesphere.entity.user.IGetUserResponse;
 import epicode.it.cinesphere.entity.user.User;
 import epicode.it.cinesphere.entity.user.UserRepo;
+import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ public class AuthService {
     public IGetUserResponse register(RegisterRequest request) {
 
         if (userRepo.existsByUsername(request.getUsername()) || userRepo.existsByEmail(request.getEmail())) {
-            throw new IllegalArgumentException("User already exists");
+            throw new EntityExistsException("User already exists");
         }
 
         User u = new User();
@@ -42,7 +44,7 @@ public class AuthService {
 
     }
 
-    public LoginResponse login(LoginRequest request) throws IllegalAccessException {
+    public LoginResponse login(LoginRequest request) {
         if (userRepo.existsByEmail(request.getEmail()) || userRepo.existsByUsername(request.getUsername())) {
             String emailOrUsername = request.getEmail() != null ? request.getEmail() : request.getUsername();
             User u = userRepo.findFirstByEmailOrUsername(emailOrUsername);
@@ -56,10 +58,10 @@ public class AuthService {
                 // Restituisci una risposta che include il token e i dati utente
                 return new LoginResponse(token, userResponse);
             } else {
-                throw new IllegalAccessException("Invalid credentials");
+                throw new AccessDeniedException("Invalid credentials");
             }
         }
-        throw new IllegalAccessException("User not found");
+        throw new AccessDeniedException("User not found");
     }
 
 }
