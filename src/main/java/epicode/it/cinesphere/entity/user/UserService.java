@@ -89,10 +89,10 @@ public class UserService {
 
     public IGetUserResponse update(UpdateUserRequest request)  {
         User u = findById(request.getId());
-        if (request.getFirstName() != null) u.setFirstName(request.getFirstName());
-        if (request.getLastName() != null) u.setLastName(request.getLastName());
-        if (request.getUsername() != null) u.setUsername(request.getUsername());
-        if (request.getEmail() != null) u.setEmail(request.getEmail());
+        u.setFirstName(request.getFirstName() != null ? request.getFirstName() : u.getFirstName());
+        u.setLastName(request.getLastName() != null ? request.getLastName() : u.getLastName());
+        u.setUsername(request.getUsername() != null ? request.getUsername() : u.getUsername());
+        u.setEmail(request.getEmail() != null ? request.getEmail() : u.getEmail());
         if (request.getActualPassword() != null && request.getNewPassword() != null)
             if (passwordEncoder.matches(request.getActualPassword(), u.getPassword()))
                 u.setPassword(passwordEncoder.encode(request.getNewPassword()));
