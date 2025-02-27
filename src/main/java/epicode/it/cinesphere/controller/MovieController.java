@@ -1,12 +1,9 @@
 package epicode.it.cinesphere.controller;
 
-import epicode.it.cinesphere.entity.actor.Actor;
-import epicode.it.cinesphere.entity.movie.AddMovieRequest;
+import epicode.it.cinesphere.entity.movie.dto.AddMovieRequest;
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieService;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +43,10 @@ public class MovieController {
         Map<String, String> response = new HashMap<>();
         response.put("message", movieService.delete(id));
         return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/latest")
+    public ResponseEntity<Movie> getLatestMovie() {
+        return new ResponseEntity<>(movieService.findLatest(), HttpStatus.OK);
     }
 }

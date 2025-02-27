@@ -1,7 +1,7 @@
 package epicode.it.cinesphere.entity.user;
 
 import epicode.it.cinesphere.entity.movie.Movie;
-import epicode.it.cinesphere.entity.rate.Rate;
+import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

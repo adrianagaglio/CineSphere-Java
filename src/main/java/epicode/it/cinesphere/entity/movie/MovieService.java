@@ -1,10 +1,12 @@
 package epicode.it.cinesphere.entity.movie;
 
 import epicode.it.cinesphere.entity.actor.Actor;
-import epicode.it.cinesphere.entity.actor.ActorRepo;
 import epicode.it.cinesphere.entity.actor.ActorService;
-import epicode.it.cinesphere.entity.actor.GetActorRequest;
-import epicode.it.cinesphere.entity.rate.Rate;
+import epicode.it.cinesphere.entity.actor.dto.AddActorRequest;
+import epicode.it.cinesphere.entity.actor.dto.GetActorRequest;
+import epicode.it.cinesphere.entity.genres.Genre;
+import epicode.it.cinesphere.entity.genres.GenreService;
+import epicode.it.cinesphere.entity.movie.dto.AddMovieRequest;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -19,6 +21,7 @@ import java.util.List;
 public class MovieService {
     private final MovieRepo movieRepo;
     private final ActorService actorService;
+    private final GenreService genreService;
     private final Logger logger;
 
     public Movie save(Movie movie) {
@@ -60,6 +63,7 @@ public class MovieService {
         return movieRepo.findByYearOrderByTitleAsc(year);
     }
 
+
     @Transactional
     public Movie newMovie(AddMovieRequest request) {
         Movie newMovie = new Movie();
@@ -71,14 +75,21 @@ public class MovieService {
         newMovie.setYear(request.getYear());
         newMovie.setCoverImage(request.getCoverImage());
         newMovie.setDirector(request.getDirector());
-        if (request.getCoverImage() != null && request.getCoverImage().size() > 0)
-            newMovie.getCoverImage().addAll(request.getCoverImage());
-        if (request.getGenres() != null && request.getGenres().size() > 0)
-            newMovie.getGenres().addAll(request.getGenres());
+        if (request.getCoverImage() != null)
+            newMovie.setCoverImage(request.getCoverImage());
+        if (request.getGenres() != null && !request.getGenres().isEmpty()) {
+            request.getGenres().forEach(genreName -> {
+                Genre genre = genreService.addGenre(genreName);
+                newMovie.getGenres().add(genre);
+                // Associa il film al genere
+                genre.getMovies().add(newMovie);
+            });
+        }
         if (request.getActors() != null && request.getActors().size() > 0) {
             for (int i = 0; i < request.getActors().size(); i++) {
-                GetActorRequest a = request.getActors().get(i);
+                AddActorRequest a = request.getActors().get(i);
                 Actor managedActor = actorService.findActorByNameAndSurname(a.getName(), a.getSurname());
+                if (managedActor == null) managedActor = actorService.saveActor(a);
                 newMovie.getActors().add(managedActor);
                 managedActor.getMovies().add(newMovie);
             }
@@ -92,9 +103,8 @@ public class MovieService {
         if (request.getDescription() != null) m.setDescription(request.getDescription());
         if (request.getYear() == 0) m.setYear(request.getYear());
         if (request.getDirector() != null) m.setDirector(request.getDirector());
-        if (request.getCoverImage() != null && request.getCoverImage().size() > 0) {
-            m.getCoverImage().clear();
-            m.getCoverImage().addAll(request.getCoverImage());
+        if (request.getCoverImage() != null) {
+            m.setCoverImage(request.getCoverImage());
         }
         if (request.getGenres() != null && request.getGenres().size() > 0) {
             m.getGenres().clear();
@@ -105,5 +115,9 @@ public class MovieService {
             m.getActors().addAll(request.getActors());
         }
         return movieRepo.save(m);
+    }
+
+    public Movie findLatest() {
+        return movieRepo.findAllByOrderByYearDesc().getFirst();
     }
 }

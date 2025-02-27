@@ -1,4 +1,4 @@
-package epicode.it.cinesphere.entity.user;
+package epicode.it.cinesphere.entity.user.dto;
 
 import lombok.Data;
 

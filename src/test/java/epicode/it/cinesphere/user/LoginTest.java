@@ -1,8 +1,9 @@
 package epicode.it.cinesphere.user;
 
 import epicode.it.cinesphere.entity.auth.AuthService;
-import epicode.it.cinesphere.entity.auth.RegisterRequest;
+import epicode.it.cinesphere.entity.auth.dto.RegisterRequest;
 import epicode.it.cinesphere.entity.user.*;
+import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

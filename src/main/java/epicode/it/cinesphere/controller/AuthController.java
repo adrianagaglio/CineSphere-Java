@@ -1,13 +1,11 @@
 package epicode.it.cinesphere.controller;
 
 import epicode.it.cinesphere.entity.auth.AuthService;
-import epicode.it.cinesphere.entity.auth.LoginResponse;
-import epicode.it.cinesphere.entity.auth.RegisterRequest;
-import epicode.it.cinesphere.entity.user.IGetUserResponse;
-import epicode.it.cinesphere.entity.auth.LoginRequest;
+import epicode.it.cinesphere.entity.auth.dto.LoginResponse;
+import epicode.it.cinesphere.entity.auth.dto.RegisterRequest;
+import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
+import epicode.it.cinesphere.entity.auth.dto.LoginRequest;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

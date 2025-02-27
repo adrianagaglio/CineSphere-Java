@@ -2,7 +2,9 @@ package epicode.it.cinesphere.entity.user;
 
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieRepo;
-import epicode.it.cinesphere.entity.rate.Rate;
+import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
+import epicode.it.cinesphere.entity.user.dto.UpdateFavRequest;
+import epicode.it.cinesphere.entity.user.dto.UpdateUserRequest;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

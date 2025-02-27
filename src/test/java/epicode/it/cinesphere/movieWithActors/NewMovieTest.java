@@ -2,8 +2,8 @@ package epicode.it.cinesphere.movieWithActors;
 
 import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.actor.ActorService;
-import epicode.it.cinesphere.entity.actor.GetActorRequest;
-import epicode.it.cinesphere.entity.movie.AddMovieRequest;
+import epicode.it.cinesphere.entity.actor.dto.GetActorRequest;
+import epicode.it.cinesphere.entity.movie.dto.AddMovieRequest;
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieService;
 import jakarta.transaction.Transactional;

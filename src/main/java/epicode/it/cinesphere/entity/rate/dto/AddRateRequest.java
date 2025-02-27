@@ -1,4 +1,4 @@
-package epicode.it.cinesphere.entity.rate;
+package epicode.it.cinesphere.entity.rate.dto;
 
 import lombok.Data;
 

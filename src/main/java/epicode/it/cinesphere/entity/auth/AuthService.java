@@ -1,6 +1,9 @@
 package epicode.it.cinesphere.entity.auth;
 
-import epicode.it.cinesphere.entity.user.IGetUserResponse;
+import epicode.it.cinesphere.entity.auth.dto.LoginRequest;
+import epicode.it.cinesphere.entity.auth.dto.LoginResponse;
+import epicode.it.cinesphere.entity.auth.dto.RegisterRequest;
+import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
 import epicode.it.cinesphere.entity.user.User;
 import epicode.it.cinesphere.entity.user.UserRepo;
 import jakarta.persistence.EntityExistsException;

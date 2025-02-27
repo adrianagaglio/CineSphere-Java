@@ -1,13 +1,11 @@
 package epicode.it.cinesphere.controller;
 
 import epicode.it.cinesphere.entity.movie.MovieService;
-import epicode.it.cinesphere.entity.rate.AddRateRequest;
-import epicode.it.cinesphere.entity.rate.IRateResponse;
-import epicode.it.cinesphere.entity.rate.Rate;
+import epicode.it.cinesphere.entity.rate.dto.AddRateRequest;
+import epicode.it.cinesphere.entity.rate.dto.IRateResponse;
 import epicode.it.cinesphere.entity.rate.RateService;
 import epicode.it.cinesphere.entity.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

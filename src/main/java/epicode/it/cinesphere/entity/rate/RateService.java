@@ -2,6 +2,8 @@ package epicode.it.cinesphere.entity.rate;
 
 import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.movie.MovieService;
+import epicode.it.cinesphere.entity.rate.dto.AddRateRequest;
+import epicode.it.cinesphere.entity.rate.dto.IRateResponse;
 import epicode.it.cinesphere.entity.user.User;
 import epicode.it.cinesphere.entity.user.UserService;
 import jakarta.persistence.EntityNotFoundException;

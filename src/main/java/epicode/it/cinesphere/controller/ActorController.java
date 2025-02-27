@@ -2,9 +2,8 @@ package epicode.it.cinesphere.controller;
 
 import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.actor.ActorService;
-import epicode.it.cinesphere.entity.actor.AddActorRequest;
+import epicode.it.cinesphere.entity.actor.dto.AddActorRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

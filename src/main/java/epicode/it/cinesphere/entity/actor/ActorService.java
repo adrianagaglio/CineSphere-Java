@@ -1,5 +1,6 @@
 package epicode.it.cinesphere.entity.actor;
 
+import epicode.it.cinesphere.entity.actor.dto.AddActorRequest;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
