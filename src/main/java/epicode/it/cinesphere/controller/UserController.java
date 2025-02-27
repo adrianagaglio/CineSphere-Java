@@ -33,7 +33,7 @@ public class UserController {
     // PUT aggiorna
     @PutMapping("/{id}")
     public ResponseEntity<IGetUserResponse> updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest user) {
-        return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
+        return new ResponseEntity<>(userService.update(id, user), HttpStatus.OK);
     }
 
     // DELETE user

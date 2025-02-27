@@ -35,7 +35,7 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public String delete(Long id)  {
+    public String delete(Long id) {
         userRepo.deleteById(id);
         return "User deleted successfully";
 
@@ -87,12 +87,8 @@ public class UserService {
         return userRepo.findByIdGetUserResponse(id);
     }
 
-    public IGetUserResponse update(UpdateUserRequest request)  {
-        User u = findById(request.getId());
-        u.setFirstName(request.getFirstName() != null ? request.getFirstName() : u.getFirstName());
-        u.setLastName(request.getLastName() != null ? request.getLastName() : u.getLastName());
-        u.setUsername(request.getUsername() != null ? request.getUsername() : u.getUsername());
-        u.setEmail(request.getEmail() != null ? request.getEmail() : u.getEmail());
+    public IGetUserResponse update(Long id, UpdateUserRequest request) {
+        User u = findById(id);
         if (request.getActualPassword() != null && request.getNewPassword() != null)
             if (passwordEncoder.matches(request.getActualPassword(), u.getPassword()))
                 u.setPassword(passwordEncoder.encode(request.getNewPassword()));

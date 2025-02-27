@@ -26,7 +26,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     public List<IGetUserResponse> findGetUsersResponseBy();
 
-    @Query("SELECT u FROM User u WHERE u.id = :id")
+    @Query("SELECT u, au.role FROM User u JOIN AppUser au ON u.id = au.id WHERE u.id = :id")
     public IGetUserResponse findByIdGetUserResponse(@Param("id") Long id);
 
     @Query("SELECT m FROM User u JOIN u.favMovies m WHERE u.id = :id")

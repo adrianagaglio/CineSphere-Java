@@ -1,4 +1,4 @@
-package epicode.it.cinesphere.security;
+package epicode.it.cinesphere.entity;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

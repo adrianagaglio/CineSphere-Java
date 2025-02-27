@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
-    private final epicode.it.cinesphere.security.JwtTokenProvider jwtTokenProvider;
+    private final epicode.it.cinesphere.entity.JwtTokenProvider jwtTokenProvider;
 
     public IGetUserResponse register(RegisterRequest request) {
 
