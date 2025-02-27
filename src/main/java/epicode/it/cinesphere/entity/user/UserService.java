@@ -87,14 +87,7 @@ public class UserService {
         return userRepo.findByIdGetUserResponse(id);
     }
 
-    public IGetUserResponse update(Long id, UpdateUserRequest request) {
-        User u = findById(id);
-        if (request.getActualPassword() != null && request.getNewPassword() != null)
-            if (passwordEncoder.matches(request.getActualPassword(), u.getPassword()))
-                u.setPassword(passwordEncoder.encode(request.getNewPassword()));
-        save(u);
-        return userRepo.findByIdGetUserResponse(request.getId());
-    }
+
 
     public IGetUserResponse updateFav(UpdateFavRequest request) {
         User u = findById(request.getUserId());

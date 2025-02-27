@@ -1,6 +1,5 @@
-package epicode.it.cinesphere.controller;
+package epicode.it.cinesphere.entity.movie;
 
-import epicode.it.cinesphere.entity.movie.Movie;
 import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
 import epicode.it.cinesphere.entity.user.dto.UpdateFavRequest;
 import epicode.it.cinesphere.entity.user.UserService;

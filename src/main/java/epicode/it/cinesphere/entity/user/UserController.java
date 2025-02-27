@@ -1,8 +1,7 @@
-package epicode.it.cinesphere.controller;
+package epicode.it.cinesphere.entity.user;
 
 import epicode.it.cinesphere.entity.user.dto.IGetUserResponse;
 import epicode.it.cinesphere.entity.user.dto.UpdateUserRequest;
-import epicode.it.cinesphere.entity.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +29,11 @@ public class UserController {
         return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
     }
 
-    // PUT aggiorna
-    @PutMapping("/{id}")
-    public ResponseEntity<IGetUserResponse> updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest user) {
-        return new ResponseEntity<>(userService.update(id, user), HttpStatus.OK);
-    }
+//    // PUT aggiorna
+//    @PutMapping("/{id}")
+//    public ResponseEntity<IGetUserResponse> updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest user) {
+//        return new ResponseEntity<>(userService.update(id, user), HttpStatus.OK);
+//    }
 
     // DELETE user
     @DeleteMapping("/{id}")

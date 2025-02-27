@@ -4,6 +4,7 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jdk.jfr.Experimental;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.connector.Response;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    protected ResponseEntity<Message> handleEntityNotFoundException(EntityExistsException ex) {
+    protected ResponseEntity<Message> handleEntityNotFoundException(EntityNotFoundException ex) {
         Message message = new Message();
         message.setMessage(ex.getMessage());
         message.setStatus(HttpStatus.NOT_FOUND);
@@ -43,5 +44,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         message.setStatus(HttpStatus.FORBIDDEN);
         logger.error(ex.getMessage());
         return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(SecurityException.class)
+    protected ResponseEntity<Message> handleSecurityException(SecurityException ex) {
+        Message message = new Message();
+        message.setMessage(ex.getMessage());
+        message.setStatus(HttpStatus.UNAUTHORIZED);
+        logger.error(ex.getMessage());
+        return new ResponseEntity<>(message, HttpStatus.UNAUTHORIZED);
     }
 }

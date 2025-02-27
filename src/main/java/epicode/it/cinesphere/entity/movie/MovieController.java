@@ -1,8 +1,6 @@
-package epicode.it.cinesphere.controller;
+package epicode.it.cinesphere.entity.movie;
 
 import epicode.it.cinesphere.entity.movie.dto.AddMovieRequest;
-import epicode.it.cinesphere.entity.movie.Movie;
-import epicode.it.cinesphere.entity.movie.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,5 @@
-package epicode.it.cinesphere.controller;
+package epicode.it.cinesphere.entity.actor;
 
-import epicode.it.cinesphere.entity.actor.Actor;
-import epicode.it.cinesphere.entity.actor.ActorService;
 import epicode.it.cinesphere.entity.actor.dto.AddActorRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
