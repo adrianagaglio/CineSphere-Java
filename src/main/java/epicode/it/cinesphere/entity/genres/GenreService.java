@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class GenreService {
@@ -24,5 +26,9 @@ public class GenreService {
 
     public Genre getGenre(String name) {
         return genreRepo.findFirstByName(name).orElse(null);
+    }
+
+    public List<Genre> getAll() {
+        return genreRepo.findAll();
     }
 }

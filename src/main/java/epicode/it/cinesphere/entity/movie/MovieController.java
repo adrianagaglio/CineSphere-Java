@@ -1,5 +1,9 @@
 package epicode.it.cinesphere.entity.movie;
 
+import epicode.it.cinesphere.entity.actor.Actor;
+import epicode.it.cinesphere.entity.actor.ActorService;
+import epicode.it.cinesphere.entity.genres.Genre;
+import epicode.it.cinesphere.entity.genres.GenreService;
 import epicode.it.cinesphere.entity.movie.dto.AddMovieRequest;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
@@ -18,6 +22,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MovieController {
     private final MovieService movieService;
+    private final GenreService genreService;
+    private final ActorService actorService;
 
     @GetMapping
     public ResponseEntity<List<Movie>> getMovies() {
@@ -54,5 +60,15 @@ public class MovieController {
     @GetMapping("/paged")
     public ResponseEntity<Page<Movie>> pagedMovies(@ParameterObject Pageable pageable) {
         return ResponseEntity.ok(movieService.findAllPageable(pageable));
+    }
+
+    @GetMapping("/genres")
+    public ResponseEntity<List<Genre>> getGenres() {
+        return new ResponseEntity<>(genreService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/actors")
+    public ResponseEntity<List<Actor>> getActors() {
+        return new ResponseEntity<>(actorService.findAll(), HttpStatus.OK);
     }
 }
