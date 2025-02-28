@@ -2,7 +2,6 @@ package epicode.it.cinesphere.entity.user;
 
 import com.github.javafaker.Faker;
 import epicode.it.cinesphere.auth.appuser.AppUserSvc;
-import epicode.it.cinesphere.auth.appuser.Role;
 import epicode.it.cinesphere.auth.dto.RegisterRequest;
 import epicode.it.cinesphere.entity.user.dto.UserRequest;
 import jakarta.persistence.EntityExistsException;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -19,7 +17,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UserRunner implements ApplicationRunner {
     private final UserService userService;
-    private final PasswordEncoder pwdEncoder;
     private final AppUserSvc appUserSvc;
     private final Faker faker;
     private final Logger logger;

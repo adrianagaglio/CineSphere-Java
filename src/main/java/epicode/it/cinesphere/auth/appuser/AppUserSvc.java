@@ -79,7 +79,7 @@ public class AppUserSvc {
 
     @Transactional
     // metodo per la registrazione di un nuovo amministratore
-    public AppUser registerAdmin(@Valid RegisterRequest request) {
+    public String registerAdmin(@Valid RegisterRequest request) {
 
         if (appUserRepo.existsByEmailOrUsername(request.getEmail(), request.getUsername())) {
             throw new EntityExistsException("Utente già registrato");
@@ -89,9 +89,21 @@ public class AppUserSvc {
         appUser.setEmail(request.getEmail());
         appUser.setUsername(request.getUsername());
         appUser.setPassword(pwdEncoder.encode(request.getPassword()));
+        appUser = appUserRepo.save(appUser);
+
+        if (request.getUser() != null) {
+            User u = new User();
+            BeanUtils.copyProperties(request.getUser(), u);
+            u = userRepo.save(u);
+            u.setAppUser(appUser);
+            appUser.setUser(u);
+        }
+
         appUser.setRoles(new HashSet<>(Set.of(Role.ROLE_ADMIN)));
 
-        return appUserRepo.save(appUser);
+        appUser = appUserRepo.save(appUser);
+
+        return "User registered successfully";
     }
 
     // cerca utente per email

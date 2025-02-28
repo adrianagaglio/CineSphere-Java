@@ -8,14 +8,10 @@ import epicode.it.cinesphere.auth.dto.RegisterRequest;
 import epicode.it.cinesphere.auth.jwt.JwtTokenUtil;
 import epicode.it.cinesphere.entity.user.UserRepo;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

@@ -33,5 +33,4 @@ public interface UserRepo extends JpaRepository<User, Long> {
     public List<Movie> findFavMoviesByUserId(@Param("id") Long id);
 
 
-
 }
