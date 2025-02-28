@@ -2,6 +2,9 @@ package epicode.it.cinesphere.entity.movie;
 
 import epicode.it.cinesphere.entity.movie.dto.AddMovieRequest;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +49,10 @@ public class MovieController {
     @GetMapping("/latest")
     public ResponseEntity<Movie> getLatestMovie() {
         return new ResponseEntity<>(movieService.findLatest(), HttpStatus.OK);
+    }
+
+    @GetMapping("/paged")
+    public ResponseEntity<Page<Movie>> pagedMovies(@ParameterObject Pageable pageable) {
+        return ResponseEntity.ok(movieService.findAllPageable(pageable));
     }
 }

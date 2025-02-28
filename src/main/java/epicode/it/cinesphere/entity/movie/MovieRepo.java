@@ -2,6 +2,8 @@ package epicode.it.cinesphere.entity.movie;
 
 import epicode.it.cinesphere.entity.actor.Actor;
 import epicode.it.cinesphere.entity.rate.Rate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,5 +20,5 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
 
     public List<Movie> findAllByOrderByYearDesc();
 
-    
+    public Page<Movie> findAllByOrderByYearDesc(Pageable pageable);
 }

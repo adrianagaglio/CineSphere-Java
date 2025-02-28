@@ -12,6 +12,8 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -119,5 +121,9 @@ public class MovieService {
 
     public Movie findLatest() {
         return movieRepo.findAllByOrderByYearDesc().getFirst();
+    }
+
+    public Page<Movie> findAllPageable(Pageable pageable) {
+        return movieRepo.findAll(pageable);
     }
 }
