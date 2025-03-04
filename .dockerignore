@@ -2,7 +2,6 @@
 *.log
 
 # Ignora le directory di build e dipendenze
-/target/
 /bin/
 /build/
 
