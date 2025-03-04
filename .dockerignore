@@ -1,0 +1,25 @@
+# Ignora i file di log
+*.log
+
+# Ignora le directory di build e dipendenze
+/target/
+/bin/
+/build/
+
+# Ignora i file di configurazione locale
+/.idea/
+/.vscode/
+/.settings/
+
+# Ignora i file di ambiente locali
+.env
+*.env
+
+# Ignora i file di sistema
+.DS_Store
+
+# Ignora i file Git
+.git/
+.gitignore
+
+
