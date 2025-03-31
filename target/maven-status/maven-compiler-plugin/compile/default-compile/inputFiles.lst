@@ -7,15 +7,18 @@ C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cin
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\appuser\Role.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\configurations\CorsConfig.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\configurations\OpenApiConfig.java
-C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\configurations\PwdEncoder.java
+C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\configurations\PwdEncoderConfig.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\configurations\SecurityConfig.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\dto\AuthResponse.java
+C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\dto\AuthUpdateRequest.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\dto\LoginRequest.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\dto\RegisterRequest.java
+C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\dto\ResetPassword.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\jwt\JwtAuthenticationEntryPoint.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\jwt\JwtRequestFilter.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\auth\jwt\JwtTokenUtil.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\CinesphereApplication.java
+C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\configuration\CloudinaryConfig.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\configuration\FakerConfiguration.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\configuration\LoggerConfiguration.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\actor\Actor.java
@@ -28,7 +31,6 @@ C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cin
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\genres\Genre.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\genres\GenreRepo.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\genres\GenreService.java
-C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\JwtTokenProvider.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\movie\dto\AddMovieRequest.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\movie\FavController.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\movie\Movie.java
@@ -53,3 +55,5 @@ C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cin
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\entity\user\UserService.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\exceptions\GlobalExceptionHandler.java
 C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\exceptions\Message.java
+C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\utilities\UploadController.java
+C:\Users\adria\Documents\Formazione\EPICODE\01_Corso\01_Portfolio\CineSphere\cinesphere-be\src\main\java\epicode\it\cinesphere\utilities\UploadSvc.java
