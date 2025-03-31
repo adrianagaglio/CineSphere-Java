@@ -3,6 +3,7 @@ package epicode.it.cinesphere.entity.movie;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import epicode.it.cinesphere.entity.actor.Actor;
+import epicode.it.cinesphere.entity.genres.Genre;
 import epicode.it.cinesphere.entity.rate.Rate;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,11 +26,13 @@ public class Movie {
     private int year;
 
     @Column(name="cover_image")
-    private List<String> coverImage;
+    private String coverImage;
 
     private String director;
 
-    private List<String> genres = new ArrayList<>();
+    @ManyToMany(mappedBy = "movies", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonManagedReference
+    private List<Genre> genres = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonManagedReference

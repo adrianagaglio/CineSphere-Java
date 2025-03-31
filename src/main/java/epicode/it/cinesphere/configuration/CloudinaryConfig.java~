@@ -1,0 +1,4 @@
+package epicode.it.cinesphere.configuration;
+
+public class CloudinaryConfig {
+}

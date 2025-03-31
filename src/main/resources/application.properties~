@@ -1,0 +1,22 @@
+spring.application.name=cinesphere
+
+spring.jpa.hibernate.ddl-auto=update
+spring.sql.init.mode=always
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost/${DB_NAME}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASSWORD}
+
+server.port=8080
+
+# Configurazione JWT 44 CARATTERI
+jwt.secret=${JWT_SECRET}
+# Durata del token in millisecondi 1 h
+jwt.expiration=3600000
+
+# CLOUDINARY FOR UPLOAD FILES
+cloudinary.cloud-name=${CLOUD_NAME}
+cloudinary.api-key=${API_KEY}
+cloudinary.api-secret=${API_SECRET}
