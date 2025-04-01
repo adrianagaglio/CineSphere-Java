@@ -29,6 +29,7 @@ Dati:
 
   ## ENV FILE => NECESSARIO PER L'AVVIO DELL'APPLICAZIONE
   - Creare file .env dentro la cartella del progetto e definire le seguenti variabili d'ambiente
+    
   `DB_NAME=ep-empty-dust-a2fj2r9u.eu-central-1.aws.neon.tech/cinesphere?user=cinesphere_owner&password=npg_4zPQGhgHC7jW&sslmode=require
   DB_USER=cinesphere_owner
   DB_PASSWORD=npg_4zPQGhgHC7jW
