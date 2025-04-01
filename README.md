@@ -8,6 +8,8 @@ Catalogo film.
 
 Permette:
 - operazioni CRUD
+- ricerca film per titolo
+- ricerca film correlati per genere e autore
 - registrazione nuovi utenti e login
 - aggiunta e rimozione preferiti
 - ratings dei film
