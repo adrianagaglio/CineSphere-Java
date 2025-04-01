@@ -23,7 +23,7 @@ Dati:
 - Rest API con salvataggio dati su db PostgreSQL su neon.tech
 
 ## ENV FILE => NECESSARIO PER L'AVVIO DELL'APPLICAZIONE
-  Creare file .env dentro la root del progetto e definire le seguenti variabili d'ambiente: \
+  Creare file .env dentro la root del progetto e definire le seguenti variabili d'ambiente: 
     
   `DB_NAME=[nome db]` (crea un nuovo db locale o remoto ed inserisci i dati richiesti \
   ATTENZIONE!!! la variabile DB_NAME deve includere anche l'host: es. localhost\nome_db) \
@@ -41,7 +41,7 @@ Dati:
 
   oppure
 - Esegui `docker build . -t cinesphere-be-app` per creare l'immagine dell'applicazione con tutte le dipendenze necessarie al suo funzionamento
-- Esegui `docker run -d -p 8080:8080 --env-file .env cinesphere-be-app` per creare ed avviare il container in base basata sull'immagine appena creata e indicando il file .env con le variabili necessarie
+- Esegui `docker run -d -p 8080:8080 --env-file .env cinesphere-be-app` per creare ed avviare il container basato sull'immagine appena creata e specificando il file .env con le variabili necessarie
 - Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
 
 ## Eseguire l'applicazione sulla tua macchina locale (sconsigliato)
