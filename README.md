@@ -28,7 +28,7 @@ Dati:
 - Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
 
   ## ENV FILE => NECESSARIO PER L'AVVIO DELL'APPLICAZIONE
-  - Creare file .env dentro la cartella del progetto e definire le seguenti variabili d'ambiente: \
+  Creare file .env dentro la cartella del progetto e definire le seguenti variabili d'ambiente: \
     
   `DB_NAME=[nome db]` (crea un nuovo db locale o remoto ed inserisci i dati richiesti - ATTENZIONE!!! la variabile DB name deve includere anche l'host: es. localhost\nome_db) \
   `DB_USER=[utente db]` \
