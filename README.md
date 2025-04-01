@@ -29,7 +29,7 @@ Dati:
 
   ## ENV FILE => NECESSARIO PER L'AVVIO DELL'APPLICAZIONE
   - Creare file .env dentro la cartella del progetto e definire le seguenti variabili d'ambiente: \
-  `DB_NAME=[nome db]` \
+  `DB_NAME=[nome db]` (crea un nuovo db locale o remoto ed inserisci i dati richiesti) \
   `DB_USER=[utente db]` \
   `DB_PASSWORD=[password db]` \
   `JWT_SECRET=[chiave jwt ]` (è possibile ottenerne una qui [JwtSecret.com](https://jwtsecret.com/generate)) \
