@@ -48,4 +48,6 @@ Dati:
 - Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
 - L'applicazione si aggiornarà automaticamente ad ogni modifica del file sorgente.
 
-
+## Link al frontend
+- [CineSphere Frontend Web App](https://ng-cinesphere.netlify.app/)
+- [CineSphere Frontend GitHub](https://github.com/adrianagaglio/CineSphere-Angular)
