@@ -32,8 +32,8 @@ Dati:
   `DB_NAME=[nome db]` \
   `DB_USER=[utente db]` \
   `DB_PASSWORD=[password db]` \
-  `JWT_SECRET=[chiave jwt ]` (è possibile ottenerne una qui [JwtSecret.com](https://jwtsecret.com/generate) \
-  `CLOUD_NAME=dgevh7ksg` \
+  `JWT_SECRET=[chiave jwt ]` (è possibile ottenerne una qui [JwtSecret.com](https://jwtsecret.com/generate)) \
+  `CLOUD_NAME=dgevh7ksg` (creare un account su [cloudinary.com](https://cloudinary.com/) ed inserire i dati richiesti ) \
   `CLOUD_API_KEY=745387371774771` \
   `CLOUD_API_SECRET=fcAbCakLGdV1i60mX4WN7HJ5YnI`
 
