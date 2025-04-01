@@ -31,7 +31,7 @@ Dati:
   Creare file .env dentro la root del progetto e definire le seguenti variabili d'ambiente: \
     
   `DB_NAME=[nome db]` (crea un nuovo db locale o remoto ed inserisci i dati richiesti \
-  ATTENZIONE!!! la variabile DB name deve includere anche l'host: es. localhost\nome_db) \
+  ATTENZIONE!!! la variabile DB_NAME deve includere anche l'host: es. localhost\nome_db) \
   `DB_USER=[utente db]` \
   `DB_PASSWORD=[password db]` \
   `JWT_SECRET=[segreto jwt]` (è possibile ottenerne una qui [JwtSecret.com](https://jwtsecret.com/generate)) \
