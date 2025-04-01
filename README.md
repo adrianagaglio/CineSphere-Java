@@ -42,7 +42,7 @@ Dati:
   A questo punto è possibile avviare l'applicazione seguendo le indicazioni sopra.
 
 ## Eseguire l'applicazione sulla tua macchina locale (sconsigliato)
-
+- Assicurati di eseguire il progetto con la versione 21 di Java
 - Imposta le variabili d'ambiente (specificate sopra) all'interno del tuo IDE (es. IntelliJ) o sostiiscile dentro il file src/main/resources/application.properties
 - Avvia l'applicazione
 - Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
