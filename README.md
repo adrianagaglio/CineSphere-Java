@@ -22,17 +22,7 @@ Tecnologie utilizzate:
 Dati:
 - Rest API con salvataggio dati su db PostgreSQL su neon.tech
 
-## Eseguire l'applicazione con Docker (consigliato)
-
-- Se non hai Docker installato, segui le istruzioni dal sito ufficiale: [Docker](https://docs.docker.com/desktop/)
-- Esegui `docker build . -t cinesphere-be-app` per creare l'immagine dell'applicazione con tutte le dipendenze necessarie al suo funzionamento
-- Esegui `docker compose up -d` per creare ed eseguire il container per avviare l'applicazione con i parametri specificati nel file docker-compose.yml 
-
-  oppure
-- Esegui `docker run -d -p 8080:8080 --env-file .env cinesphere-be-app`
-- Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
-
-  ## ENV FILE => NECESSARIO PER L'AVVIO DELL'APPLICAZIONE
+## ENV FILE => NECESSARIO PER L'AVVIO DELL'APPLICAZIONE
   Creare file .env dentro la root del progetto e definire le seguenti variabili d'ambiente: \
     
   `DB_NAME=[nome db]` (crea un nuovo db locale o remoto ed inserisci i dati richiesti \
@@ -44,7 +34,15 @@ Dati:
   `CLOUD_API_KEY=745387371774771` \
   `CLOUD_API_SECRET=fcAbCakLGdV1i60mX4WN7HJ5YnI`
 
-  A questo punto è possibile avviare l'applicazione seguendo le indicazioni sopra.
+## Eseguire l'applicazione con Docker (consigliato)
+
+- Se non hai Docker installato, segui le istruzioni dal sito ufficiale: [Docker](https://docs.docker.com/desktop/)
+- Esegui `docker compose up -d` per creare ed eseguire il container per avviare l'applicazione con i parametri specificati nel file docker-compose.yml 
+
+  oppure
+- Esegui `docker build . -t cinesphere-be-app` per creare l'immagine dell'applicazione con tutte le dipendenze necessarie al suo funzionamento
+- Esegui `docker run -d -p 8080:8080 --env-file .env cinesphere-be-app` per creare ed avviare il container in base basata sull'immagine appena creata e indicando il file .env con le variabili necessarie
+- Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
 
 ## Eseguire l'applicazione sulla tua macchina locale (sconsigliato)
 - Assicurati di eseguire il progetto con la versione 21 di Java
