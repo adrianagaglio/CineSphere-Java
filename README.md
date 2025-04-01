@@ -28,21 +28,23 @@ Dati:
 - Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
 
   ## ENV FILE => NECESSARIO PER L'AVVIO DELL'APPLICAZIONE
-  Creare file .env dentro la cartella del progetto e definire le seguenti variabili d'ambiente: \
+  Creare file .env dentro la root del progetto e definire le seguenti variabili d'ambiente: \
     
   `DB_NAME=[nome db]` (crea un nuovo db locale o remoto ed inserisci i dati richiesti - ATTENZIONE!!! la variabile DB name deve includere anche l'host: es. localhost\nome_db) \
   `DB_USER=[utente db]` \
   `DB_PASSWORD=[password db]` \
-  `JWT_SECRET=[chiave jwt ]` (è possibile ottenerne una qui [JwtSecret.com](https://jwtsecret.com/generate)) \
+  `JWT_SECRET=[segreto jwt]` (è possibile ottenerne una qui [JwtSecret.com](https://jwtsecret.com/generate)) \
   `CLOUD_NAME=dgevh7ksg` (creare un account gratuito su [cloudinary.com](https://cloudinary.com/) ed inserire i dati richiesti ) \
   `CLOUD_API_KEY=745387371774771` \
   `CLOUD_API_SECRET=fcAbCakLGdV1i60mX4WN7HJ5YnI`
 
-## Eseguire l'applicazione sulla tua macchina locale
+  A questo punto è possibile avviare l'applicazione seguendo le indicazioni sopra.
 
-- Esegui `npm i` per scaricare le dipendenze.
-- Esegui `ng serve` per avviare il server di sviluppo.
-- Naviga `http://localhost:4200/`.
+## Eseguire l'applicazione sulla tua macchina locale (sconsigliato)
+
+- Imposta le variabili d'ambiente (specificate sopra) all'interno del tuo IDE (es. IntelliJ) o sostiiscile dentro il file src/main/resources/application.properties
+- Avvia l'applicazione
+- Naviga `http://localhost:8080/swagger-ui/index.html` per consultare la documentazione degli endpoint e testarli
 - L'applicazione si aggiornarà automaticamente ad ogni modifica del file sorgente.
 
 
